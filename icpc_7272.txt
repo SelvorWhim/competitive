@@ -1,0 +1,8 @@
+See my comments above the code and inline comments for further clarification.
+For the first 2 numbers, whether an employee is definitely promoted depends on the number of successors in the graph, and for the last, whether one is definitely not promoted depends on the number of ancestors.
+It was fast enough for this input size to count successors and ancestors for each employee separately, so I did that.
+Number of successors can be found by a graph search that doesn't double-count. Because the graph is a DAG, dfs works here.
+For number of ancestors, either a reverse dfs (only efficient if the graph is stored as an adjacency matrix), or a reverse version of the graph needs to be saved. I used adjacency lists so I saved the reverse graph during parsing.
+vector<vector<int>> adj is the normal graph adjacency list, vector<vector<int> > rev_adj is the one for the reverse graph.
+set<int> succ saves unique successors (or successors in reverse graph, which are ancestors) found during search for a particular employee. So maybe it would have worked even for a non-DAG.
+Time complexity should be O(E^2+E*P) (O(E+P) for dfs for each employee).
