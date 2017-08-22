@@ -1,0 +1,4 @@
+See my comments above the code and inline comments for further clarification.
+I found the formula for the probability of winning from a tie and the rest had limited options so I solved this as a closed formula with parts calculated mostly based on the binomial distribution.
+(I originally misunderstood the rules for set tie break and the formula turned out to be longer than I had anticipated. In retrospect it might have been better to solve this with something more programmatic.)
+Time complexity is O(1) since it's a closed formula. Maybe a few hundred mathematical operations, I don't know how expensive pow is and it might depend on precision of double representation on a particular system.
