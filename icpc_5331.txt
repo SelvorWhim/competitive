@@ -1,0 +1,14 @@
+This solution is a graph search between queried items on a graph representing the items and exchange rates.
+The problem is represented as a graph where the nodes are item types, the edges link items with exchange rates (known from assertions) and are annotated with integer ratios (these are not really weights - since exchange rates are consistent, all paths between two item types would have the same "length" if they were weights).
+Every assertion adds edges (and sometimes nodes) to the graph. Edges are added in both directions, with opposite ratios.
+Every query looks for a path between relevant nodes with BFS, multiplying the annotating ratios along the way and reducing them to the lowest terms (by dividing by gcd), and the final ratio is output. If BFS fails to find path to target node from source, no exchange rate is known for the two items, and question marks are output as example.
+Data structures:
+	The struct ratio represents an integer ratio (rational number, not necessarily reduced). 
+	vector<vector<pair<int,ratio>>> g - represents the graph as adjacency list, where nodes are the integers item types are mapped to, and the edges are annotated with ratios.
+	map<string,int> nodenum - maps every item name to a unique integer to simplify indexing the adjacency list. set<string> items is a helper structure for building this map.
+	queue<int> q, vector<int> visible, vector<ratio> pathratio - helper structures for BFS, the last saves the "path length" to any seen node from the source as ratio.
+Time complexity - for n item types (1<=n<=60) and e given exchange rates (0<=e<3600 due to distinctness):
+	For every assertion, O(log(n)) to check for existing item mappings and add if necessary, and O(1) amortized time to add edges (and possibly nodes) to the graph.
+	For every query, BFS on the adjacency list graph is O(n+e), plus the complexity of calculating GCD potentially on every edge.
+		GCD is calculated by Euclid's algorithm, whose complexity I haven't found a very clear answer to, but it seems to be about the log of the numbers, and since it's used here on the multiplied numerators and denominators of 2 base ratios, each using numbers less than 100, it should be around log(100^2), about 13, so it might as well be treated as constant here.
+	In total: O(na(log(n)) + nq(n+e)) for na assertions and nq queries.
