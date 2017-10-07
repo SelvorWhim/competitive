@@ -1,28 +1,30 @@
-''' INSTRUCTIONS '''
-
-# For this problem, you are required to do the following:
-	# Given a number X (X will be a number in a base between base-2 and base-16), find the minimum base that can be associated with X.
-	# *Example: The minimum base associated 385 is base-9 (as it needs to have a base that supports the digit 8 which is its highest value digit). Similarly, the minimum base associated with B95 is base-12.
-	# Convert X from this base to a value X_10 in base-10.
-	# Do the same for another number Y and call its value in base-10 as Y_10
-	# Print out the sum of these two numbers in base-10, ie X_10 + Y_10
-
-# > INPUT Specifications
-
-# Your program will take
-	# A number X in base-m (X >= 0, 2 = m = 16)
-	# A number Y in base-n (Y >= 0, 2 = n = 16)
-
-# You can assume that X and Y when converted to base-10 will fit in a long long (C++).
-
-# > OUTPUT Specifications
-
-# Based on the input, print out the sum of X_10 and Y_10
+### INSTRUCTIONS ###
+'''
+For this problem, you are required to do the following:
+	Given a number X (X will be a number in a base between base-2 and base-16), find the minimum base that can be associated with X.
+	*Example: The minimum base associated 385 is base-9 (as it needs to have a base that supports the digit 8 which is its highest value digit). Similarly, the minimum base associated with B95 is base-12.
+	Convert X from this base to a value X_10 in base-10.
+	Do the same for another number Y and call its value in base-10 as Y_10
+	Print out the sum of these two numbers in base-10, ie X_10 + Y_10
 
 
+> INPUT Specifications
+
+Your program will take
+	A number X in base-m (X >= 0, 2 = m = 16)
+	A number Y in base-n (Y >= 0, 2 = n = 16)
+
+You can assume that X and Y when converted to base-10 will fit in a long long (C++).
 
 
-''' MY SOLUTION ''' # accepted
+> OUTPUT Specifications
+
+Based on the input, print out the sum of X_10 and Y_10
+
+'''
+
+
+### MY SOLUTION (accepted) ###
 
 #Problem        : Base Arithmetic
 #Language       : Python 3
