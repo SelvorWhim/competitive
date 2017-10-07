@@ -4,3 +4,4 @@ LOG[ignore].txt
 LOG[ignore].txt
 *.pyc
 *.txt
+*.pdf
