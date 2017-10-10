@@ -12,7 +12,7 @@ For example:
 > Input Specifications
 
 Your program will take
-    A string S denoting the set of characters to be tested. All letters in the alphanumeric input will be lowercase (1 ≤ LENGTH(S) ≤ 500)
+    A string S denoting the set of characters to be tested. All letters in the alphanumeric input will be lowercase (1 <= LENGTH(S) <= 500)
 
 
 > Output Specifications
@@ -51,13 +51,11 @@ def palicount(S):
                 return 0 # not a palinagram, as seen in previous -> 0 ways
             else: # first odd
                 odd_found = True
-        else: # odd has to be in the middle
-            sum_counts += count
-            if count/2 > 1: # identical letter ordering should not be included
-                counts_over_1.append(count/2) # /2 - just the letters to be ordered, the second half will reflect it
-    ##return factorial(sum_counts/2) # should only work if all letters are different...ah, looks like they caught me
+        sum_counts += count // 2 # //2 - just the letters to be ordered, the second half will reflect it; odd has to be in the middle, so it's not part of the count
+        if count//2 > 1: # identical letter ordering should not be included
+            counts_over_1.append(count/2) # /2 - just the letters to be ordered, the second half will reflect it
     # ways to order the first half of the palindrome (not including middle if odd)
-    orders = factorial(sum_counts/2) # could be problematic for large enough number. DO I have any non-combinatorial way to count it?
+    orders = factorial(sum_counts) # could be problematic for large enough number. DO I have any non-combinatorial way to count it?
     for n in counts_over_1:
         orders /= factorial(n) # seems to work right, even with like length 300, so what's wrong with it? Maybe they DIDN'T want division?
     return int(orders)
