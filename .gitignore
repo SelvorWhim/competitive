@@ -6,3 +6,4 @@ LOG[ignore].txt
 *.txt
 *.pdf
 *.png
+*/_unsorted/*
