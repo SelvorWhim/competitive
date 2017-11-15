@@ -5,7 +5,6 @@ class Solution:
         :type k: int
         :rtype: void Do not return anything, modify nums in-place instead.
         """
-        if k != 0: # nums[-0:] == nums, creating duplicates in this case for the otherwise neat solution
-            kmod = k%len(nums) # same for indexes out of range. Rotation by n leaves array unchanged, hence mod
-            nums[:] = nums[-k:] + nums[:len(nums)-k] # TIL [:] necessary to change python list in place...
-        
+        kmod = k%len(nums) # nums[-0:] == nums, same for indexes out of range, creating duplicates in this case for the otherwise neat solution. Rotation by n leaves array unchanged, hence mod
+        if kmod != 0:
+            nums[:] = nums[-kmod:] + nums[:len(nums)-kmod] # TIL [:] necessary to change python list in place...
