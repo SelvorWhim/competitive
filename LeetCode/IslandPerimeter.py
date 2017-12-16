@@ -1,3 +1,5 @@
+# O(n) time for n squares on the board, O(1) extra space
+
 def at(grid,x,y,w,h):
     if x < 0 or x >= w or y < 0 or y >= h:
         return 0
@@ -18,12 +20,7 @@ class Solution:
             for y in range(h):
                 if at(grid,x,y,w,h) == 1:
                     perimiter += 4
-                    if at(grid,x-1,y,w,h) == 1:
-                        perimiter -= 1
-                    if at(grid,x+1,y,w,h) == 1:
-                        perimiter -= 1
-                    if at(grid,x,y-1,w,h) == 1:
-                        perimiter -= 1
-                    if at(grid,x,y+1,w,h) == 1:
-                        perimiter -= 1
+                    for (dx,dy) in [(1,0),(-1,0),(0,1),(0,-1)]: # for each step to an orthogonal neighbor
+                        if at(grid, x+dx, y+dy, w, h) == 1:
+                            perimiter -= 1
         return perimiter
