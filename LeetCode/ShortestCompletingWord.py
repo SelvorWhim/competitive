@@ -37,4 +37,3 @@ class Solution:
                 first = False
                 shortest = word
         return shortest
-                
