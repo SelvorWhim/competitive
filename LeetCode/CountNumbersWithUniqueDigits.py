@@ -7,8 +7,8 @@ def combinationsWithOrder(n,k):
 def countNumbersWithKUniqueDigits(k):
     if k > 10 or k < 0:
         return 0
-    if k <= 1: # special case because we can have a "leading" zero
-        return 9**k # 0 is technically considered part of n=0
+    if k == 0:
+        return 1
     return 9*(combinationsWithOrder(9, k-1)) # 9 because leading digit should not be a 0, then ordered combinations of size k-1 out of 9 remaining digits (all the digits including 0 but not including the leading one)
 
 class Solution:
