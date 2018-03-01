@@ -1,17 +1,15 @@
-# NOTE: this solution failed because I should have used something closer to a simple factorial rather than a combinatorical combination
-
 from math import factorial
 
 # an unsafe and possibly inefficient implementation in general, but in this usage n,k <= 9 which fits well within integer range, should be fine
-def nChooseK(n,k):
-    return (factorial(n) / factorial(k)) / factorial(n-k)
+def combinationsWithOrder(n,k):
+    return factorial(n) // factorial(n-k)
 
 def countNumbersWithKUniqueDigits(k):
-    if k > 10 or k < 1:
+    if k > 10 or k < 0:
         return 0
-    if k == 1: # special case because we can have a "leading" zero
-        return 1
-    return 9*(nChooseK(9, k-1)) # 9 because leading digit should not be a 0, choose k-1 remaining digits out of 9 remaining options (all the digits including 0 but not including the leding one)
+    if k <= 1: # special case because we can have a "leading" zero
+        return 9**k # 0 is technically considered part of n=0
+    return 9*(combinationsWithOrder(9, k-1)) # 9 because leading digit should not be a 0, then ordered combinations of size k-1 out of 9 remaining digits (all the digits including 0 but not including the leading one)
 
 class Solution:
     def countNumbersWithUniqueDigits(self, n):
@@ -19,4 +17,4 @@ class Solution:
         :type n: int
         :rtype: int
         """
-        return sum([countNumbersWithKUniqueDigits(i) for i in range(1,min(n,10)+1)])
+        return sum([countNumbersWithKUniqueDigits(i) for i in range(min(n,10) + 1)])
