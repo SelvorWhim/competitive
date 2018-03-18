@@ -14,34 +14,24 @@ public:
         ListNode *lSum = new ListNode(0); // dummy node for convenience
         ListNode *it1 = l1, *it2 = l2, *itSum = lSum;
         int carry = 0;
-        while (it1 != NULL && it2 != NULL) {
-            int sum = it1->val + it2->val + carry;
+        while (it1 != NULL || it2 != NULL) {
+            int sum = (it1 == NULL ? 0 : it1->val)
+					+ (it2 == NULL ? 0 : it2->val)
+					+ carry;
             carry = sum / 10;
             sum = sum % 10;
             itSum->next = new ListNode(sum);
-            it1 = it1->next;
-            it2 = it2->next;
-            itSum = itSum->next;
-        }
-        while (it1 != NULL) { // if l1 had more digits
-            int sum = it1->val + carry;
-            carry = sum / 10;
-            sum = sum % 10;
-            itSum->next = new ListNode(sum);
-            it1 = it1->next;
-            itSum = itSum->next;
-        }
-        while (it2 != NULL) { // if l2 had more digits
-            int sum = it2->val + carry;
-            carry = sum / 10;
-            sum = sum % 10;
-            itSum->next = new ListNode(sum);
-            it2 = it2->next;
+            if (it1 != NULL) {
+                it1 = it1->next;
+            }
+            if (it2 != NULL) {
+                it2 = it2->next;
+            }
             itSum = itSum->next;
         }
         if (carry > 0) {
             itSum->next = new ListNode(carry);
         }
-        return lSum->next;
+        return lSum->next; // skip dummy node
     }
 };
