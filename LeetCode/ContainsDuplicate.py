@@ -1,4 +1,6 @@
-class Solution:
+# NOTE: the first solution is slower on given test cases, despite stopping immediately on finding a duplicate while the second solution goes over entire list
+'''
+class OldSolution:
     # O(n) solution using Python set
     def containsDuplicate(self, nums):
         """
@@ -11,3 +13,13 @@ class Solution:
                 return True
             seen.add(i)  # amortized O(1)
         return False
+'''
+
+class Solution:
+    # O(n) solution using Python set
+    def containsDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        return len(nums) > len(set(nums))
