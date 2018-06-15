@@ -8,3 +8,5 @@ For these, icpc_####.cpp will contain the implementation with sketches and hapha
 Next, I'm adding solutions to Bloomberg codecon problems, starting with ones I wrote a while back in python 3. I included question transcripts in the comments, since seeing the problems and testing the solutions on the site requires login.
 
 I'm also adding solutions to problems posted on LeetCode and Codewars as I solve them. These are the problem sources I'm focusing on now - the selection isn't as large as ICPC's, but it's easier to filter their problems by topic and difficulty.
+
+Codewars profile (includes lots of solutions to simple "kata" which I haven't included here): https://www.codewars.com/users/SelvorWhim
