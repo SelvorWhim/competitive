@@ -9,14 +9,11 @@ either keep finding the exchange rate between all pairs of previously seen items
 
 
 #include <iostream>
-#include <algorithm>
-#include <string>
 #include <set>
 #include <vector>
 #include <map>
 #include <queue>
 #include <utility> // pair
-#include <cmath>
 
 using namespace std;
 
@@ -54,7 +51,8 @@ inline ll gcd(ll a, ll b) { return gcd(a, b, a, b); }
 ratio rmul(ratio r1, ratio r2){
 	ll num = r1.num * r2.num;
 	ll den = r1.den * r2.den;
-	ratio mulled = {num / gcd(num,den), den / gcd(num,den)};
+	ll nd_gcd = gcd(num,den);
+	ratio mulled = {num / nd_gcd, den / nd_gcd};
 	return mulled;
 }
 
