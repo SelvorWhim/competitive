@@ -4,4 +4,4 @@ from functools import reduce
 from operator import xor
 
 def oddOrEven(arr):
-    return "even" if reduce(xor,arr) % 2 == 0 else "odd" 
+    return {0:'even', 1:'odd'}[reduce(xor,arr) % 2]
