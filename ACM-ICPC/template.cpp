@@ -1,19 +1,24 @@
-// TODO: use richer template like partner's
+// idea: TODO
 
 #include <iostream>
-#include <algorithm>
-#include <string>
+//#include <algorithm>
+//#include <string>
 //#include <set>
 //#include <vector>
 //#include <map>
 //#include <queue>
-#include <cmath>
+//#include <cmath>
 
 using namespace std;
 
 int main() {
-	//int n,m;
-	//cin >> n >> m; // read 2
-	//cout << "NO" << endl; // print 2. endl is like a linebreak
+	int N; // for problems beginning with a number saying how many cases (common)
+	cin >> N;
+	while (N--) {
+		int n,m; // some other variables, per line
+		cin >> n >> m; // read
+		int x = m + n;// calculate stuff
+		cout << x << endl; // output formatted result, line per case
+	}
 	return 0;
 }
