@@ -1,5 +1,5 @@
 def revrot_chunk(chunk):
-    if sum(int(d)**3 for d in chunk) % 2 == 0:
+    if sum(int(d) for d in chunk) % 2 == 0: # 3rd power is even iff number itself is even
         return chunk[::-1]
     else:
         return chunk[1:]+chunk[0]
