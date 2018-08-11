@@ -1,14 +1,15 @@
 # string in base (defined by alphabet) to integer
-def map_from_base(s, base): # todo: default base
+def map_from_base(s, base = bin):
     b = len(base)
     n = 0
+    base_to_digit = {c:i for i,c in enumerate(base)}
     for c in s:
         n *= b
-        n += base.index(c) # todo: optimize
+        n += base_to_digit[c]
     return n
 
 # integer to string in base (defined by alphabet)
-def map_to_base(n, base):
+def map_to_base(n, base = bin):
     b = len(base)
     sd = []
     while n > 0:
