@@ -6,7 +6,9 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-class Solution {
+ 
+// the obvious
+class Solution1 {
 public:
     ListNode* middleNode(ListNode* head) {
         ListNode* it = head;
@@ -20,5 +22,22 @@ public:
             it = it->next;
         }
         return it;
+    }
+};
+
+// the less obvious (but actually slower)
+class Solution2 {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* mid = head;
+        ListNode* end = head;
+        while (end != NULL) {
+            end = end->next;
+            if (end != NULL) {
+                end = end->next;
+                mid = mid->next;
+            }
+        }
+        return mid;
     }
 };
