@@ -11,9 +11,8 @@ public:
                 lf++;
             }
         }
-        if (lf == -1) return nums.size(); // none were val
-        for (int i = 0; i < nums.size() - lf; i++) {
-            nums.pop_back();
+        if (lf == -1) {
+            return nums.size(); // none were val
         }
         return lf;
     }
