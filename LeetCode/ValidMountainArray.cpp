@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool validMountainArray(vector<int>& A) {
-        if (A.size() < 3) {
+        if (A.size() < 3 || A[0] > A[1]) {
             return false;
         }
         bool climbing = true;
@@ -16,11 +16,8 @@ public:
                 return false;
             }
             // in this case i-1 is the point where we reach the peak (if this is a valid mountain)
+            // (2nd edge case check makes sure the "peak" isn't i==0)
             if (climbing && A[i-1] > A[i]) {
-                // but the peak can't be at the left edge
-                if (i == 1) {
-                    return false;
-                }
                 climbing = false;
             }
         }
