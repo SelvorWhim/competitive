@@ -1,10 +1,8 @@
-import operator as op
-
 ops = {
-    0: op.add,
-    1: op.sub,
-    2: op.mul,
-    3: op.truediv
+    0: '+',
+    1: '-',
+    2: '*',
+    3: '/'
 }
 
 def letter_to_num(c):
@@ -16,9 +14,6 @@ def letter_to_op(c):
 def testit(s):
     if len(s) % 2 == 0:
         return None
-    numbers = [letter_to_num(c) for c in s[0::2]]
-    operators = [letter_to_op(c) for c in s[1::2]]
-    ret = numbers[0]
-    for i in range(len(operators)):
-        ret = operators[i](ret, numbers[i+1])
-    return ret
+    expression = ''.join(str(letter_to_num(s[i])) if i%2==0 else letter_to_op(s[i]) for i in range(len(s)))
+    # using eval as a quick and dirty way to resolve order of operations...
+    return eval(expression)
