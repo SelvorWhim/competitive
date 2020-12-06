@@ -1,33 +1,23 @@
+// in any gap of n 0's, you can place up to ceil((n-2)/2) flowers
+// can be slightly optimized by checking against n at intervals, but this is the simplest solution
+
 class Solution {
 public:
     bool canPlaceFlowers(vector<int>& flowerbed, int n) {
-        bool prevZero = true;
-        bool justPlaced = false;
-        for (int i = 0; i < flowerbed.size(); i++) {
-            if (flowerbed[i] == 0) {
-                if (prevZero) { // without looking ahead, there seems to be room - place a flower
-                    n--;
-                    justPlaced = true;
-                    prevZero = false;
-                } else { // can't place yet, but can in next spot if it's also empty
-                    justPlaced = false;
-                    prevZero = true;
-                }
-            } else {
-                if (justPlaced) { // placed without looking ahead - cancel it
-                    n++;
-                    justPlaced = false;
-                }
-                prevZero = false;
+        int gap_len = 1; // left edge gap is equivalent to a gap with 1 more 0 on the left
+        int max_placeable = 0;
+        for (int flower : flowerbed) {
+            if (flower == 0) {
+                gap_len++;
             }
-            if (n <= 0 && !justPlaced) {
-                return true;
+            else if (gap_len > 0) { // gap just ended
+                max_placeable += ceil((gap_len-2)/2.0);
+                gap_len = 0;
             }
         }
-        if (n <= 0) {
-            return true;
-        } else {
-            return false;
+        if (gap_len > 0) { // gap just ended
+            max_placeable += ceil((gap_len-1)/2.0); // -1 in this case because it's a gap at the right edge, with no blocking flower after it
         }
+        return max_placeable >= n;
     }
 };
