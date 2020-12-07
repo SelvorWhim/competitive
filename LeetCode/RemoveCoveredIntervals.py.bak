@@ -1,0 +1,15 @@
+# NOTE: sorted comparison isn't good enough, misses some cases
+# return number of remaining, not the remaining themselves - easier indexing
+
+class Solution:
+    def covering(self, covering_interval, covered_interval):
+        return covering_interval[0] <= covered_interval[0] and covered_interval[1] <= covering_interval[1]
+    
+    def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
+        intervals.sort() # sort by start point, then by end point
+        print(intervals)
+        n = len(intervals)
+        for i in range(n-1):
+            if self.covering(intervals[i], intervals[i+1]) or self.covering(intervals[i+1], intervals[i]):
+                n -= 1
+        return n

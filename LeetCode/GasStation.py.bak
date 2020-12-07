@@ -1,0 +1,22 @@
+# calculate starting from a given station, continue even if you go under 0, record the minimum and end gas.
+# If you start at the next station, you lose the gas of the first station but gain the cost. But then you have to add it at the end.
+# continue calculating that way until you find one where the minimum and end are at least 0 (or just the minimum?)
+# O(n) time (up to twice around the circle), O(1) space
+
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        n = len(gas) # assumed also the length of cost
+        curr_gas = gas[0]
+        min_gas = curr_gas
+        for i in range(n):
+            curr_gas -= cost[i]
+            min_gas = min(min_gas, curr_gas)
+            curr_gas += gas[(i+1)%n]
+        #last_gas = curr_gas
+        if min_gas >= 0:
+            return 0
+        
+        best_min_gas = min_gas
+        best_i = 0
+        for i in range(1,n):
+            

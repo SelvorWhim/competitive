@@ -1,0 +1,33 @@
+# fails for cases where you need to "undo"
+
+def max_up_to(A, n):
+    return max(x for x in A if x <= n)
+
+class Solution:
+    def largestTimeFromDigits(self, A: List[int]) -> str:
+        if min(A) > 2:
+            return ""
+        
+        # get 1st digit:
+        ret_digits = [max_up_to(A, 2)]
+        A.remove(ret_digits[0])
+        
+        # get 2nd digit:
+        if ret_digits[0] == 2:
+            if min(A) > 3:
+                return ""
+            ret_digits.append(max_up_to(A, 3))
+        else:
+            ret_digits.append(max(A))
+        A.remove(ret_digits[1])
+        
+        # get minutes:
+        if min(A) > 5:
+            return ""
+        if max(A) <= 5:
+            ret_digits.extend([max(A), min(A)])
+        else:
+            ret_digits.extend([min(A), max(A)])
+        
+        # format:
+        return "{0}{1}:{2}{3}".format(*ret_digits)

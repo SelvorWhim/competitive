@@ -1,0 +1,38 @@
+// FIX: out of bounds error?
+
+// idea: subpattern can be of any length that divides the string length
+// find divisors first, check each
+
+#include <string>
+#include <vector>
+
+// helper function, checks if str has a subpattern of a given length
+bool hasSubpattern(const std::string& str, const unsigned int length) {
+  const size_t n = str.size();
+  for (size_t i = 0; i < length; i++) {
+    char c = str[i];
+    for (size_t j = i + length; j < n; j+=length) {
+      if (str[j] != c) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+bool hasSubpattern(const std::string& str) {
+  size_t n = str.length();
+  std::vector<unsigned int> potential_divisors;
+  for (size_t i = 1; i < str.length(); i++) {
+    if (str[i] == str[0] && n%i == 0) {
+      potential_divisors.push_back(i);
+    }
+  }
+  // check the biggest divisors first, they're easier
+  for (size_t i = potential_divisors.size() - 1; i >= 0; i--) {
+    if (hasSubpattern(str, potential_divisors[i])) {
+      return true;
+    }
+  }
+  return false;
+}

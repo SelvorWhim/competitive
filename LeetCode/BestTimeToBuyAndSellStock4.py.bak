@@ -1,0 +1,28 @@
+# too local, fails on e.g. [3,2,6,5,0,3,1,5], k=2
+
+# idea: get the 6 best deltas from a local minimum to a next local maximum
+
+class Solution:
+    def maxProfit(self, k: int, prices: List[int]) -> int:
+        if len(prices) == 0:
+            return 0
+        transactions_remaining = k
+        last_min = prices[0]
+        last_max = prices[0]
+        prev = prices[0]
+        deltas = []
+        print(last_min, last_max)
+        for price in prices[1:]:
+            if price >= prev:
+                last_max = price
+            else: # price < prev
+                if last_max > last_min:
+                    deltas.append(last_max - last_min)
+                last_min = price
+                last_max = price
+            prev = price
+            print(last_min, last_max)
+        deltas.append(last_max - last_min)
+        deltas.sort(reverse=True)
+        print(deltas)
+        return sum(deltas[:k]) # at most k biggest

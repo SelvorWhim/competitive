@@ -70,3 +70,5 @@ if is_palinagram(S):
     print('yes')
 else:
     print('no')
+
+#original filename palinagram
