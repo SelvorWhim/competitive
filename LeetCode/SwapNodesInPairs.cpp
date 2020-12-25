@@ -1,30 +1,27 @@
-// based on examples, list length is not necessarily even. In that case I assume all but the last list member should be swapped in pairs.
+// based on examples, list length is not necessarily even, and if it's odd, all but the last list member should be swapped in pairs.
 
 /**
  * Definition for singly-linked list.
  * struct ListNode {
  *     int val;
  *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
-        if (head == NULL) return NULL;
-        if (head->next == NULL) return head;
-        ListNode* newHead = head->next;
-        head->next = newHead->next;
-        newHead->next = head;
-        ListNode* ptr = head;
-        while (ptr->next != NULL && ptr->next->next != NULL) {
-            ListNode* n1 = ptr->next;
-            ListNode* n2 = ptr->next->next;
-            n1->next = n2->next;
-            n2->next = n1;
-            ptr->next = n2;
-            ptr = n1;
+        ListNode dummy(0, head); // dummy node to enable switching pairs
+        ListNode* it = &dummy;
+        while (it->next != nullptr && it->next->next != nullptr) { // it is definitely not nullptr
+            ListNode* after_pair = it->next->next->next;
+            it->next->next->next = it->next;
+            it->next = it->next->next;
+            it->next->next->next = after_pair;
+            it = it->next->next;
         }
-        return newHead;
+        return dummy.next;
     }
 };
