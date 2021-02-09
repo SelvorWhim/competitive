@@ -1,3 +1,5 @@
+// note: with function name changed to convertBST, also works for Convert BST to Greater Tree
+
 /*
 idea: iterate the tree inorder but right to left (that gives decreasing order in a BST),
 keep a running sum of the original nodes, add the running sum to each node
