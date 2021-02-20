@@ -1,5 +1,14 @@
+roman_value = {
+    'I': 1,
+    'V': 5,
+    'X': 10,
+    'L': 50,
+    'C': 100,
+    'D': 500,
+    'M': 1000,
+}
+
 class Solution:
-    romanVals = {"I":1, "V":5, "X":10, "L":50, "C":100, "D":500, "M":1000}
     def romanToInt(self, s):
         """
         :type s: str
@@ -7,13 +16,12 @@ class Solution:
         """
         # idea: roman numerals add the values of symbols independently, unless a smaller symbol appears before a larger.
         # not every combination of symbols is valid, but if we assume valid input, this rule should suffice.
-        sum = 0
-        lastVal = 10000
-        for sym in s:
-            currVal = Solution.romanVals[sym]
-            if currVal <= lastVal:
-                sum += currVal
-            else:
-                sum += currVal - (2*lastVal) # undo addition of symbol that turns out to be "negative" valued
-            lastVal = currVal
-        return sum
+        prev_value = 0
+        total = 0
+        for c in s:
+            curr_value = roman_value[c]
+            if curr_value > prev_value:
+                total -= 2*prev_value
+            total += curr_value
+            prev_value = curr_value
+        return total
